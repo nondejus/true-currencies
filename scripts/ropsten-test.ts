@@ -101,4 +101,10 @@ describe('test test', function () {
 1268113052019478187 * 2077671222831092640961 = 2634721995477378238026616614846962217707
 -630064393422916273542993517298642294442
    */
+
+  it('setups liquidator', async() => {
+    await registry.subscribe(attributes., this.liquidatorUniswap.address, {from: owner})
+    await registry.setAttributeValue(approvedBeneficiary, APPROVED_BENEFICIARY, 1, {from: owner})
+
+  });
 })
