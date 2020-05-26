@@ -102,9 +102,8 @@ describe('test test', function () {
 -630064393422916273542993517298642294442
    */
 
-  it('setups liquidator', async() => {
-    await registry.subscribe(attributes., this.liquidatorUniswap.address, {from: owner})
-    await registry.setAttributeValue(approvedBeneficiary, APPROVED_BENEFICIARY, 1, {from: owner})
-
-  });
+  it('setups liquidator', async () => {
+    await (await registry.subscribe(attributes.approvedBeneficiary, '0x93b3961749580b328d395f5fdfbae426135c0a15')).wait()
+    await (await registry.setAttributeValue(assuredFinOp.address, attributes.approvedBeneficiary, 1)).wait()
+  })
 })
