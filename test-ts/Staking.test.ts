@@ -126,6 +126,8 @@ describe('Staking', () => {
         await trueUsd.connect(holder).enableTrueReward()
         await aaveLendingPoolCore.setReserveNormalizedIncome(parseEther('2000000000'))
 
+        expect(await assuredFinancialOpportunity.totalSupply()).to.eq(parseEther('100'))
+        expect(await aaveFinancialOpportunity.totalSupply()).to.eq(parseEther('200'))
         expect(await trueUsd.balanceOf(holder.address)).to.equal(parseEther('162.450479271247104500'))
         expect(await assuredFinancialOpportunity.poolAwardBalance()).to.eq(parseEther('237.549520728752895500'));
       })
