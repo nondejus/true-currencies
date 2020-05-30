@@ -21,6 +21,16 @@ const proxies = {
   Liquidator: 'liquidatorProxy',
 }
 
+// todo don't hardcode addresses
+const addresses = {
+  TrueUSD: '0xB36938c51c4f67e5E1112eb11916ed70A772bD75',
+  ProvisionalRegistryImplementation: '0x08031B53f15F7E5aADDCdF6da3382f8483dB4323',
+  TokenController: '0x8dD05D08Ab99EDdCBEb5C22A9a54096885a535F8',
+  AaveFinancialOpportunity: '0x5aAAAC43362913cA44ab7A1c7b330da0909c60Cd',
+  AssuredFinancialOpportunity: '0xDe5264FE7F40F3c9c81d9D71E68c60275e7f1704',
+  Liquidator: '0x93b3961749580b328d395f5fdfbae426135c0a15',
+}
+
 const performUpgrade = async (deployHelper: Contract, wallet: Wallet, proxy: Contract, contractName: string) => {
   const deploy = setupDeployer(wallet)
 
@@ -60,7 +70,8 @@ const upgradeContract = (deployHelper: Contract, wallet: Wallet, force = false) 
   const contractAt = getContract(wallet)
 
   return async (contractName: keyof typeof proxies) => {
-    const proxy = contractAt('OwnedUpgradeabilityProxy', await deployHelper[proxies[contractName]]())
+    const contractAddress = addresses[contractName]
+    const proxy = contractAt('OwnedUpgradeabilityProxy', contractAddress)
 
     if (force) {
       return performUpgrade(deployHelper, wallet, proxy, contractName)
